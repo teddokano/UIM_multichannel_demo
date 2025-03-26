@@ -9,7 +9,7 @@
 #include	<math.h>
 
 constexpr auto	pwm_frequency	= 800.00;
-constexpr auto	pwm_resolution	= 200.00;
+constexpr auto	pwm_resolution	= 100.00;
 constexpr auto	period			= (int)pwm_frequency * 10;
 constexpr auto	delay			= 1.00 / pwm_frequency;
 

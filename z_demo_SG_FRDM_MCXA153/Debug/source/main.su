@@ -1,6 +1,0 @@
-../source/main.cpp:34:9:void __tcf_0(void*)	16	static
-../source/main.cpp:48:8:double biased_sin(int, double, double, double, double)	24	static
-../source/main.cpp:53:8:double sawtooth(int, double)	16	static
-../source/main.cpp:58:8:double square(int)	0	static
-../source/main.cpp:63:5:int main()	32	static
-../source/main.cpp:87:1:cpp)	16	static

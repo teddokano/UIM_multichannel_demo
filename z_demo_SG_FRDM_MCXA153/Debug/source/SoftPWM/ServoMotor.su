@@ -1,8 +1,0 @@
-../source/SoftPWM/ServoMotor.h:19:7:ServoMotor::~ServoMotor()	8	static
-../source/SoftPWM/ServoMotor.h:19:7:virtual ServoMotor::~ServoMotor()	8	static
-../source/SoftPWM/ServoMotor.cpp:9:1:ServoMotor::ServoMotor(int, float, float, float, float)	40	static
-../source/SoftPWM/ServoMotor.cpp:18:7:float ServoMotor::angle(float)	8	static
-../source/SoftPWM/ServoMotor.cpp:28:7:float ServoMotor::angle()	0	static
-../source/SoftPWM/ServoMotor.cpp:33:6:void ServoMotor::range(float, float)	8	static
-../source/SoftPWM/ServoMotor.cpp:39:13:ServoMotor& ServoMotor::operator=(float)	8	static
-../source/SoftPWM/ServoMotor.cpp:45:13:ServoMotor& ServoMotor::operator=(ServoMotor&)	0	static
