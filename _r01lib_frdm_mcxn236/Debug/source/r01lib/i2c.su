@@ -1,0 +1,23 @@
+../source/r01lib/i2c.cpp:150:10:virtual status_t I2C::write(uint8_t, const uint8_t*, int, bool)	24	static
+../source/r01lib/i2c.cpp:161:10:virtual status_t I2C::read(uint8_t, uint8_t*, int, bool)	24	static
+../source/r01lib/i2c.cpp:286:17:virtual void (* I2C::err_callback(err_cb_ptr))(status_t, uint8_t)	0	static
+../source/r01lib/i2c.cpp:302:6:virtual bool I2C::ping(uint8_t)	32	static
+../source/r01lib/i2c.cpp:337:6:virtual void I2C::scan(uint8_t)	0	static
+../source/r01lib/i2c.cpp:342:10:virtual status_t I2C::ccc_set(uint8_t, uint8_t, uint8_t)	0	static
+../source/r01lib/i2c.cpp:137:6:virtual void I2C::frequency(uint32_t)	16	static
+../source/r01lib/i2c.cpp:142:6:virtual void I2C::pullup(bool)	16	static
+../source/r01lib/i2c.cpp:234:10:virtual status_t I2C::reg_write(uint8_t, uint8_t, const uint8_t*, int)	40	static
+../source/r01lib/i2c.cpp:314:6:virtual void I2C::scan(uint8_t, uint8_t)	160	static
+../source/r01lib/i2c.cpp:347:10:virtual status_t I2C::ccc_get(uint8_t, uint8_t, uint8_t*, uint8_t)	8	static
+../source/r01lib/i2c.cpp:256:10:virtual status_t I2C::reg_read(uint8_t, uint8_t, uint8_t*, int)	40	static
+../source/r01lib/i2c.cpp:172:10:virtual status_t I2C::write_core(uint8_t, const uint8_t*, int, bool)	24	static
+../source/r01lib/i2c.cpp:209:10:virtual status_t I2C::read_core(uint8_t, uint8_t*, int, bool)	24	static
+../source/r01lib/i2c.cpp:294:6:static void I2C::err_handling(status_t, uint8_t)	0	static
+../source/r01lib/i2c.cpp:308:6:virtual void I2C::scan(uint8_t, uint8_t, bool*)	56	static
+../source/r01lib/i2c.cpp:266:9:virtual uint8_t I2C::reg_read(uint8_t, uint8_t)	40	static
+../source/r01lib/i2c.cpp:277:9:virtual uint8_t I2C::read(uint8_t, bool)	40	static
+../source/r01lib/i2c.cpp:272:10:virtual status_t I2C::write(uint8_t, uint8_t, bool)	40	static
+../source/r01lib/i2c.cpp:246:10:virtual status_t I2C::reg_write(uint8_t, uint8_t, uint8_t)	32	static
+../source/r01lib/i2c.cpp:40:1:I2C::I2C(int, int, bool)	40	static
+../source/r01lib/i2c.cpp:132:1:I2C::~I2C()	8	static
+../source/r01lib/i2c.cpp:132:1:virtual I2C::~I2C()	8	static

@@ -1,0 +1,7 @@
+../source/r01lib/mcu.cpp:34:6:void start_message()	0	static
+../source/r01lib/mcu.cpp:41:6:void init_mcu()	16	static
+../source/r01lib/mcu.cpp:185:6:void wait(double)	16	static
+../source/r01lib/mcu.cpp:190:6:void wait_ms(unsigned int)	16	static
+../source/r01lib/mcu.cpp:195:6:void wait_us(unsigned int)	16	static
+../source/r01lib/mcu.cpp:200:6:void panic(const char*)	96	static
+../source/r01lib/mcu.cpp:28:6:void start_mcu()	16	static

@@ -1,0 +1,5 @@
+../source/SoftPWM/SoftPWM.h:19:7:SoftPWM::~SoftPWM()	8	static
+../source/SoftPWM/SoftPWM.h:19:7:virtual SoftPWM::~SoftPWM()	8	static
+../source/SoftPWM/SoftPWM.cpp:9:1:SoftPWM::SoftPWM(int)	16	static
+../source/SoftPWM/SoftPWM.cpp:14:10:SoftPWM& SoftPWM::operator=(float)	8	static
+../source/SoftPWM/SoftPWM.cpp:20:10:SoftPWM& SoftPWM::operator=(SoftPWM&)	0	static
