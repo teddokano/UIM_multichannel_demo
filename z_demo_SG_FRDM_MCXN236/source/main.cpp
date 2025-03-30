@@ -10,7 +10,7 @@
 
 constexpr auto	pwm_frequency	= 800.00;
 constexpr auto	pwm_resolution	= 100.00;
-constexpr auto	period			= (int)pwm_frequency * 10;
+constexpr auto	period			= (int)pwm_frequency * 20;
 constexpr auto	delay			= 1.00 / pwm_frequency;
 
 constexpr auto	frequency	= 1.00;
@@ -73,12 +73,12 @@ int main( void )
 	{
 		for ( auto i = 0; i < period; i++ )
 		{
-			s[ 0 ]	= biased_sin( i, pi2, phase0 );
-			s[ 1 ]	= biased_sin( i, pi2, phase1 );
-			s[ 2 ]	= biased_sin( i, pi2, phase2 );
-			s[ 3 ]	= biased_sin( i, pi4, phase0 );
-			s[ 4 ]	= biased_sin( i, pi4, phase1 );
-			s[ 5 ]	= biased_sin( i, pi4, phase2 );
+			s[ 0 ]	= biased_sin( i, pi4, phase0 );
+			s[ 1 ]	= biased_sin( i, pi4, phase1 );
+			s[ 2 ]	= biased_sin( i, pi4, phase2 );
+			s[ 3 ]	= biased_sin( i, pi2, phase0 );
+			s[ 4 ]	= biased_sin( i, pi2, phase1 );
+			s[ 5 ]	= biased_sin( i, pi2, phase2 );
 			s[ 6 ]	= sawtooth( i );
 			s[ 7 ]	= square( i );
 			wait( delay );

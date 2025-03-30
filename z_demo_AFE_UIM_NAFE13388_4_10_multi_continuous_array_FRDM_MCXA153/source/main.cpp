@@ -11,12 +11,19 @@
 SPI				spi( D11, D12, D13, D10 );	//	MOSI, MISO, SCLK, CS
 NAFE13388_UIM	afe( spi );
 
-long			dp[ 16 ];
+constexpr auto	n_lc	= 8;
+
+long			dp[  n_lc ];
+double			dvp[ n_lc ];
 volatile bool	conversion_done	= false;
 
 void drdy_callback( void )
 {
 	afe.read( dp );
+
+	for ( auto i = 0; i < n_lc; i++ )
+		dvp[ i ]	= afe.raw2v( i, dp[ i ] );
+
 	conversion_done	= true;
 }
 
@@ -44,7 +51,7 @@ int main( void )
 	constexpr uint16_t	cc2	= 0x4C00;
 	constexpr uint16_t	cc3	= 0x0000;
 
-	for (  auto i = 0; i < 4; i++ )
+	for (  auto i = 0; i < n_lc / 2; i++ )
 	{
 		afe.open_logical_channel(  i * 2 + 0, cc0 | (i + 1) << 12 | 7       << 8, cc1, cc2, cc3 );
 		afe.open_logical_channel(  i * 2 + 1, cc0 | 7       << 12 | (i + 1) << 8, cc1, cc2, cc3 );
@@ -64,8 +71,11 @@ int main( void )
 		{
 			conversion_done	= false;
 
-			for ( auto i = 0; i < 8; i++ )
+			for ( auto i = 0; i < n_lc; i++ )
+			{
 				printf( "  %8ld,", dp[ i ] );
+				printf( "  %10.8lf,", dvp[ i ] );
+			}
 
 			printf( "  %10.8lf,",afe.raw2v( 0, dp[ 0 ] ) );
 

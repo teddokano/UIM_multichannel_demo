@@ -3,20 +3,36 @@
  * Copyright 2008-2013 Code Red Technologies Ltd,
  * Copyright 2013-2025 NXP
  * SPDX-License-Identifier: BSD-3-Clause
- * Generated linker script file for MCXA153
+ * Generated linker script file for MCXN236
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v24.12 [Build 148] [2025-01-10] on 2025/03/27 5:52:58
+ * MCUXpresso IDE v24.12 [Build 148] [2025-01-10] on 2025/03/31 7:54:49
  */
 
-INCLUDE "z_demo_SG_FRDM_MCXA153_Debug_library.ld"
-INCLUDE "z_demo_SG_FRDM_MCXA153_Debug_memory.ld"
+INCLUDE "z_demo_SG_FRDM_MCXN236_Debug_library.ld"
+INCLUDE "z_demo_SG_FRDM_MCXN236_Debug_memory.ld"
 
 ENTRY(ResetISR)
 
 SECTIONS
 {
-     /* MAIN TEXT SECTION */
+     .text_Flash2 : ALIGN(4)
+    {
+       FILL(0xff)
+        *(.text_Flash2) /* for compatibility with previous releases */
+        *(.text_PROGRAM_FLASH1) /* for compatibility with previous releases */
+        *(.text.$Flash2)
+        *(.text.$PROGRAM_FLASH1)
+        *(.text_Flash2.*) /* for compatibility with previous releases */
+        *(.text_PROGRAM_FLASH1.*) /* for compatibility with previous releases */
+        *(.text.$Flash2.*)
+        *(.text.$PROGRAM_FLASH1.*)
+        *(.rodata.$Flash2)
+        *(.rodata.$PROGRAM_FLASH1)
+        *(.rodata.$Flash2.*)
+        *(.rodata.$PROGRAM_FLASH1.*)            } > PROGRAM_FLASH1
+
+    /* MAIN TEXT SECTION */
     .text : ALIGN(4)
     {
         FILL(0xff)
@@ -32,17 +48,12 @@ SECTIONS
         LONG(LOADADDR(.data_RAM2));
         LONG(    ADDR(.data_RAM2));
         LONG(  SIZEOF(.data_RAM2));
-        LONG(LOADADDR(.data_RAM3));
-        LONG(    ADDR(.data_RAM3));
-        LONG(  SIZEOF(.data_RAM3));
         __data_section_table_end = .;
         __bss_section_table = .;
         LONG(    ADDR(.bss));
         LONG(  SIZEOF(.bss));
         LONG(    ADDR(.bss_RAM2));
         LONG(  SIZEOF(.bss_RAM2));
-        LONG(    ADDR(.bss_RAM3));
-        LONG(  SIZEOF(.bss_RAM3));
         __bss_section_table_end = .;
         __section_table_end = . ;
         /* End of Global Section Table */
@@ -82,7 +93,7 @@ SECTIONS
             KEEP (*crtend.o(.dtors))
             . = ALIGN(4);
             /* End C++ */
-    } > PROGRAM_FLASH
+    } > PROGRAM_FLASH0
     /*
      * for exception handling/unwind - some Newlib functions (in common
      * with C++ and STDC++) use this.
@@ -90,52 +101,34 @@ SECTIONS
     .ARM.extab : ALIGN(4)
     {
         *(.ARM.extab* .gnu.linkonce.armextab.*)
-    } > PROGRAM_FLASH
+    } > PROGRAM_FLASH0
 
     .ARM.exidx : ALIGN(4)
     {
         __exidx_start = .;
         *(.ARM.exidx* .gnu.linkonce.armexidx.*)
         __exidx_end = .;
-    } > PROGRAM_FLASH
+    } > PROGRAM_FLASH0
  
     _etext = .;
         
-    /* DATA section for SRAMX0 */
+    /* DATA section for SRAMX */
 
     .data_RAM2 : ALIGN(4)
     {
         FILL(0xff)
         PROVIDE(__start_data_RAM2 = .) ;
-        PROVIDE(__start_data_SRAMX0 = .) ;
+        PROVIDE(__start_data_SRAMX = .) ;
         *(.ramfunc.$RAM2)
-        *(.ramfunc.$SRAMX0)
+        *(.ramfunc.$SRAMX)
         *(.data.$RAM2)
-        *(.data.$SRAMX0)
+        *(.data.$SRAMX)
         *(.data.$RAM2.*)
-        *(.data.$SRAMX0.*)
+        *(.data.$SRAMX.*)
         . = ALIGN(4) ;
         PROVIDE(__end_data_RAM2 = .) ;
-        PROVIDE(__end_data_SRAMX0 = .) ;
-     } > SRAMX0 AT>PROGRAM_FLASH
-
-    /* DATA section for SRAMX1 */
-
-    .data_RAM3 : ALIGN(4)
-    {
-        FILL(0xff)
-        PROVIDE(__start_data_RAM3 = .) ;
-        PROVIDE(__start_data_SRAMX1 = .) ;
-        *(.ramfunc.$RAM3)
-        *(.ramfunc.$SRAMX1)
-        *(.data.$RAM3)
-        *(.data.$SRAMX1)
-        *(.data.$RAM3.*)
-        *(.data.$SRAMX1.*)
-        . = ALIGN(4) ;
-        PROVIDE(__end_data_RAM3 = .) ;
-        PROVIDE(__end_data_SRAMX1 = .) ;
-     } > SRAMX1 AT>PROGRAM_FLASH
+        PROVIDE(__end_data_SRAMX = .) ;
+     } > SRAMX AT>PROGRAM_FLASH0
 
     /* MAIN DATA SECTION */
     .uninit_RESERVED (NOLOAD) : ALIGN(4)
@@ -163,35 +156,21 @@ SECTIONS
        _edata = . ;
        PROVIDE(__end_data_RAM = .) ;
        PROVIDE(__end_data_SRAM = .) ;
-    } > SRAM AT>PROGRAM_FLASH
+    } > SRAM AT>PROGRAM_FLASH0
 
-    /* BSS section for SRAMX0 */
+    /* BSS section for SRAMX */
     .bss_RAM2 (NOLOAD) : ALIGN(4)
     {
        PROVIDE(__start_bss_RAM2 = .) ;
-       PROVIDE(__start_bss_SRAMX0 = .) ;
+       PROVIDE(__start_bss_SRAMX = .) ;
        *(.bss.$RAM2)
-       *(.bss.$SRAMX0)
+       *(.bss.$SRAMX)
        *(.bss.$RAM2.*)
-       *(.bss.$SRAMX0.*)
+       *(.bss.$SRAMX.*)
        . = ALIGN (. != 0 ? 4 : 1) ; /* avoid empty segment */
        PROVIDE(__end_bss_RAM2 = .) ;
-       PROVIDE(__end_bss_SRAMX0 = .) ;
-    } > SRAMX0 AT> SRAMX0
-
-    /* BSS section for SRAMX1 */
-    .bss_RAM3 (NOLOAD) : ALIGN(4)
-    {
-       PROVIDE(__start_bss_RAM3 = .) ;
-       PROVIDE(__start_bss_SRAMX1 = .) ;
-       *(.bss.$RAM3)
-       *(.bss.$SRAMX1)
-       *(.bss.$RAM3.*)
-       *(.bss.$SRAMX1.*)
-       . = ALIGN (. != 0 ? 4 : 1) ; /* avoid empty segment */
-       PROVIDE(__end_bss_RAM3 = .) ;
-       PROVIDE(__end_bss_SRAMX1 = .) ;
-    } > SRAMX1 AT> SRAMX1
+       PROVIDE(__end_bss_SRAMX = .) ;
+    } > SRAMX AT> SRAMX
 
     /* MAIN BSS SECTION */
     .bss (NOLOAD) : ALIGN(4)
@@ -208,33 +187,19 @@ SECTIONS
         PROVIDE(end = .);
     } > SRAM AT> SRAM
 
-    /* NOINIT section for SRAMX0 */
+    /* NOINIT section for SRAMX */
     .noinit_RAM2 (NOLOAD) : ALIGN(4)
     {
        PROVIDE(__start_noinit_RAM2 = .) ;
-       PROVIDE(__start_noinit_SRAMX0 = .) ;
+       PROVIDE(__start_noinit_SRAMX = .) ;
        *(.noinit.$RAM2)
-       *(.noinit.$SRAMX0)
+       *(.noinit.$SRAMX)
        *(.noinit.$RAM2.*)
-       *(.noinit.$SRAMX0.*)
+       *(.noinit.$SRAMX.*)
        . = ALIGN(4) ;
        PROVIDE(__end_noinit_RAM2 = .) ;
-       PROVIDE(__end_noinit_SRAMX0 = .) ;
-    } > SRAMX0 AT> SRAMX0
-
-    /* NOINIT section for SRAMX1 */
-    .noinit_RAM3 (NOLOAD) : ALIGN(4)
-    {
-       PROVIDE(__start_noinit_RAM3 = .) ;
-       PROVIDE(__start_noinit_SRAMX1 = .) ;
-       *(.noinit.$RAM3)
-       *(.noinit.$SRAMX1)
-       *(.noinit.$RAM3.*)
-       *(.noinit.$SRAMX1.*)
-       . = ALIGN(4) ;
-       PROVIDE(__end_noinit_RAM3 = .) ;
-       PROVIDE(__end_noinit_SRAMX1 = .) ;
-    } > SRAMX1 AT> SRAMX1
+       PROVIDE(__end_noinit_SRAMX = .) ;
+    } > SRAMX AT> SRAMX
 
     /* DEFAULT NOINIT SECTION */
     .noinit (NOLOAD): ALIGN(4)
@@ -250,7 +215,7 @@ SECTIONS
     } > SRAM AT> SRAM
 
     /* Reserve and place Heap within memory map */
-    _HeapSize = 0x600;
+    _HeapSize = 0x1000;
     .heap (NOLOAD) :  ALIGN(4)
     {
         _pvHeapStart = .;
@@ -259,7 +224,7 @@ SECTIONS
         _pvHeapLimit = .;
     } > SRAM
 
-     _StackSize = 0x600;
+     _StackSize = 0x1000;
      /* Reserve space in memory for Stack */
     .heap2stackfill (NOLOAD) :
     {

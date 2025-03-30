@@ -3,36 +3,20 @@
  * Copyright 2008-2013 Code Red Technologies Ltd,
  * Copyright 2013-2025 NXP
  * SPDX-License-Identifier: BSD-3-Clause
- * Generated linker script file for MCXN947
+ * Generated linker script file for MCXA153
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v24.12 [Build 148] [2025-01-10] on 2025/03/27 8:46:22
+ * MCUXpresso IDE v24.12 [Build 148] [2025-01-10] on 2025/03/31 5:58:27
  */
 
-INCLUDE "z_demo_AFE_UIM_NAFE13388_4_0_multi_continuous_array_FRDM_MCXN947_Debug_library.ld"
-INCLUDE "z_demo_AFE_UIM_NAFE13388_4_0_multi_continuous_array_FRDM_MCXN947_Debug_memory.ld"
+INCLUDE "z_demo_AFE_UIM_NAFE13388_4_0_multi_continuous_array_FRDM_MCXA153_Debug_library.ld"
+INCLUDE "z_demo_AFE_UIM_NAFE13388_4_0_multi_continuous_array_FRDM_MCXA153_Debug_memory.ld"
 
 ENTRY(ResetISR)
 
 SECTIONS
 {
-     .text_Flash2 : ALIGN(4)
-    {
-       FILL(0xff)
-        *(.text_Flash2) /* for compatibility with previous releases */
-        *(.text_PROGRAM_FLASH1) /* for compatibility with previous releases */
-        *(.text.$Flash2)
-        *(.text.$PROGRAM_FLASH1)
-        *(.text_Flash2.*) /* for compatibility with previous releases */
-        *(.text_PROGRAM_FLASH1.*) /* for compatibility with previous releases */
-        *(.text.$Flash2.*)
-        *(.text.$PROGRAM_FLASH1.*)
-        *(.rodata.$Flash2)
-        *(.rodata.$PROGRAM_FLASH1)
-        *(.rodata.$Flash2.*)
-        *(.rodata.$PROGRAM_FLASH1.*)            } > PROGRAM_FLASH1
-
-    /* MAIN TEXT SECTION */
+     /* MAIN TEXT SECTION */
     .text : ALIGN(4)
     {
         FILL(0xff)
@@ -51,9 +35,6 @@ SECTIONS
         LONG(LOADADDR(.data_RAM3));
         LONG(    ADDR(.data_RAM3));
         LONG(  SIZEOF(.data_RAM3));
-        LONG(LOADADDR(.data_RAM4));
-        LONG(    ADDR(.data_RAM4));
-        LONG(  SIZEOF(.data_RAM4));
         __data_section_table_end = .;
         __bss_section_table = .;
         LONG(    ADDR(.bss));
@@ -62,8 +43,6 @@ SECTIONS
         LONG(  SIZEOF(.bss_RAM2));
         LONG(    ADDR(.bss_RAM3));
         LONG(  SIZEOF(.bss_RAM3));
-        LONG(    ADDR(.bss_RAM4));
-        LONG(  SIZEOF(.bss_RAM4));
         __bss_section_table_end = .;
         __section_table_end = . ;
         /* End of Global Section Table */
@@ -103,7 +82,7 @@ SECTIONS
             KEEP (*crtend.o(.dtors))
             . = ALIGN(4);
             /* End C++ */
-    } > PROGRAM_FLASH0
+    } > PROGRAM_FLASH
     /*
      * for exception handling/unwind - some Newlib functions (in common
      * with C++ and STDC++) use this.
@@ -111,76 +90,52 @@ SECTIONS
     .ARM.extab : ALIGN(4)
     {
         *(.ARM.extab* .gnu.linkonce.armextab.*)
-    } > PROGRAM_FLASH0
+    } > PROGRAM_FLASH
 
     .ARM.exidx : ALIGN(4)
     {
         __exidx_start = .;
         *(.ARM.exidx* .gnu.linkonce.armexidx.*)
         __exidx_end = .;
-    } > PROGRAM_FLASH0
+    } > PROGRAM_FLASH
  
     _etext = .;
         
- 
-    /* USB_RAM */
-    .m_usb_data (NOLOAD) :
-    {
-        *(m_usb_global)
-    } > USB_RAM AT> USB_RAM
-    /* DATA section for SRAMX */
+    /* DATA section for SRAMX0 */
 
     .data_RAM2 : ALIGN(4)
     {
         FILL(0xff)
         PROVIDE(__start_data_RAM2 = .) ;
-        PROVIDE(__start_data_SRAMX = .) ;
+        PROVIDE(__start_data_SRAMX0 = .) ;
         *(.ramfunc.$RAM2)
-        *(.ramfunc.$SRAMX)
+        *(.ramfunc.$SRAMX0)
         *(.data.$RAM2)
-        *(.data.$SRAMX)
+        *(.data.$SRAMX0)
         *(.data.$RAM2.*)
-        *(.data.$SRAMX.*)
+        *(.data.$SRAMX0.*)
         . = ALIGN(4) ;
         PROVIDE(__end_data_RAM2 = .) ;
-        PROVIDE(__end_data_SRAMX = .) ;
-     } > SRAMX AT>PROGRAM_FLASH0
+        PROVIDE(__end_data_SRAMX0 = .) ;
+     } > SRAMX0 AT>PROGRAM_FLASH
 
-    /* DATA section for SRAMH */
+    /* DATA section for SRAMX1 */
 
     .data_RAM3 : ALIGN(4)
     {
         FILL(0xff)
         PROVIDE(__start_data_RAM3 = .) ;
-        PROVIDE(__start_data_SRAMH = .) ;
+        PROVIDE(__start_data_SRAMX1 = .) ;
         *(.ramfunc.$RAM3)
-        *(.ramfunc.$SRAMH)
+        *(.ramfunc.$SRAMX1)
         *(.data.$RAM3)
-        *(.data.$SRAMH)
+        *(.data.$SRAMX1)
         *(.data.$RAM3.*)
-        *(.data.$SRAMH.*)
+        *(.data.$SRAMX1.*)
         . = ALIGN(4) ;
         PROVIDE(__end_data_RAM3 = .) ;
-        PROVIDE(__end_data_SRAMH = .) ;
-     } > SRAMH AT>PROGRAM_FLASH0
-
-    /* DATA section for USB_RAM */
-
-    .data_RAM4 : ALIGN(4)
-    {
-        FILL(0xff)
-        PROVIDE(__start_data_RAM4 = .) ;
-        PROVIDE(__start_data_USB_RAM = .) ;
-        *(.ramfunc.$RAM4)
-        *(.ramfunc.$USB_RAM)
-        *(.data.$RAM4)
-        *(.data.$USB_RAM)
-        *(.data.$RAM4.*)
-        *(.data.$USB_RAM.*)
-        . = ALIGN(4) ;
-        PROVIDE(__end_data_RAM4 = .) ;
-        PROVIDE(__end_data_USB_RAM = .) ;
-     } > USB_RAM AT>PROGRAM_FLASH0
+        PROVIDE(__end_data_SRAMX1 = .) ;
+     } > SRAMX1 AT>PROGRAM_FLASH
 
     /* MAIN DATA SECTION */
     .uninit_RESERVED (NOLOAD) : ALIGN(4)
@@ -208,49 +163,35 @@ SECTIONS
        _edata = . ;
        PROVIDE(__end_data_RAM = .) ;
        PROVIDE(__end_data_SRAM = .) ;
-    } > SRAM AT>PROGRAM_FLASH0
+    } > SRAM AT>PROGRAM_FLASH
 
-    /* BSS section for SRAMX */
+    /* BSS section for SRAMX0 */
     .bss_RAM2 (NOLOAD) : ALIGN(4)
     {
        PROVIDE(__start_bss_RAM2 = .) ;
-       PROVIDE(__start_bss_SRAMX = .) ;
+       PROVIDE(__start_bss_SRAMX0 = .) ;
        *(.bss.$RAM2)
-       *(.bss.$SRAMX)
+       *(.bss.$SRAMX0)
        *(.bss.$RAM2.*)
-       *(.bss.$SRAMX.*)
+       *(.bss.$SRAMX0.*)
        . = ALIGN (. != 0 ? 4 : 1) ; /* avoid empty segment */
        PROVIDE(__end_bss_RAM2 = .) ;
-       PROVIDE(__end_bss_SRAMX = .) ;
-    } > SRAMX AT> SRAMX
+       PROVIDE(__end_bss_SRAMX0 = .) ;
+    } > SRAMX0 AT> SRAMX0
 
-    /* BSS section for SRAMH */
+    /* BSS section for SRAMX1 */
     .bss_RAM3 (NOLOAD) : ALIGN(4)
     {
        PROVIDE(__start_bss_RAM3 = .) ;
-       PROVIDE(__start_bss_SRAMH = .) ;
+       PROVIDE(__start_bss_SRAMX1 = .) ;
        *(.bss.$RAM3)
-       *(.bss.$SRAMH)
+       *(.bss.$SRAMX1)
        *(.bss.$RAM3.*)
-       *(.bss.$SRAMH.*)
+       *(.bss.$SRAMX1.*)
        . = ALIGN (. != 0 ? 4 : 1) ; /* avoid empty segment */
        PROVIDE(__end_bss_RAM3 = .) ;
-       PROVIDE(__end_bss_SRAMH = .) ;
-    } > SRAMH AT> SRAMH
-
-    /* BSS section for USB_RAM */
-    .bss_RAM4 (NOLOAD) : ALIGN(4)
-    {
-       PROVIDE(__start_bss_RAM4 = .) ;
-       PROVIDE(__start_bss_USB_RAM = .) ;
-       *(.bss.$RAM4)
-       *(.bss.$USB_RAM)
-       *(.bss.$RAM4.*)
-       *(.bss.$USB_RAM.*)
-       . = ALIGN (. != 0 ? 4 : 1) ; /* avoid empty segment */
-       PROVIDE(__end_bss_RAM4 = .) ;
-       PROVIDE(__end_bss_USB_RAM = .) ;
-    } > USB_RAM AT> USB_RAM
+       PROVIDE(__end_bss_SRAMX1 = .) ;
+    } > SRAMX1 AT> SRAMX1
 
     /* MAIN BSS SECTION */
     .bss (NOLOAD) : ALIGN(4)
@@ -267,47 +208,33 @@ SECTIONS
         PROVIDE(end = .);
     } > SRAM AT> SRAM
 
-    /* NOINIT section for SRAMX */
+    /* NOINIT section for SRAMX0 */
     .noinit_RAM2 (NOLOAD) : ALIGN(4)
     {
        PROVIDE(__start_noinit_RAM2 = .) ;
-       PROVIDE(__start_noinit_SRAMX = .) ;
+       PROVIDE(__start_noinit_SRAMX0 = .) ;
        *(.noinit.$RAM2)
-       *(.noinit.$SRAMX)
+       *(.noinit.$SRAMX0)
        *(.noinit.$RAM2.*)
-       *(.noinit.$SRAMX.*)
+       *(.noinit.$SRAMX0.*)
        . = ALIGN(4) ;
        PROVIDE(__end_noinit_RAM2 = .) ;
-       PROVIDE(__end_noinit_SRAMX = .) ;
-    } > SRAMX AT> SRAMX
+       PROVIDE(__end_noinit_SRAMX0 = .) ;
+    } > SRAMX0 AT> SRAMX0
 
-    /* NOINIT section for SRAMH */
+    /* NOINIT section for SRAMX1 */
     .noinit_RAM3 (NOLOAD) : ALIGN(4)
     {
        PROVIDE(__start_noinit_RAM3 = .) ;
-       PROVIDE(__start_noinit_SRAMH = .) ;
+       PROVIDE(__start_noinit_SRAMX1 = .) ;
        *(.noinit.$RAM3)
-       *(.noinit.$SRAMH)
+       *(.noinit.$SRAMX1)
        *(.noinit.$RAM3.*)
-       *(.noinit.$SRAMH.*)
+       *(.noinit.$SRAMX1.*)
        . = ALIGN(4) ;
        PROVIDE(__end_noinit_RAM3 = .) ;
-       PROVIDE(__end_noinit_SRAMH = .) ;
-    } > SRAMH AT> SRAMH
-
-    /* NOINIT section for USB_RAM */
-    .noinit_RAM4 (NOLOAD) : ALIGN(4)
-    {
-       PROVIDE(__start_noinit_RAM4 = .) ;
-       PROVIDE(__start_noinit_USB_RAM = .) ;
-       *(.noinit.$RAM4)
-       *(.noinit.$USB_RAM)
-       *(.noinit.$RAM4.*)
-       *(.noinit.$USB_RAM.*)
-       . = ALIGN(4) ;
-       PROVIDE(__end_noinit_RAM4 = .) ;
-       PROVIDE(__end_noinit_USB_RAM = .) ;
-    } > USB_RAM AT> USB_RAM
+       PROVIDE(__end_noinit_SRAMX1 = .) ;
+    } > SRAMX1 AT> SRAMX1
 
     /* DEFAULT NOINIT SECTION */
     .noinit (NOLOAD): ALIGN(4)
@@ -323,7 +250,7 @@ SECTIONS
     } > SRAM AT> SRAM
 
     /* Reserve and place Heap within memory map */
-    _HeapSize = 0x1000;
+    _HeapSize = 0x600;
     .heap (NOLOAD) :  ALIGN(4)
     {
         _pvHeapStart = .;
@@ -332,7 +259,7 @@ SECTIONS
         _pvHeapLimit = .;
     } > SRAM
 
-     _StackSize = 0x1000;
+     _StackSize = 0x600;
      /* Reserve space in memory for Stack */
     .heap2stackfill (NOLOAD) :
     {
