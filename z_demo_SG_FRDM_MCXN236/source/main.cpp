@@ -55,9 +55,9 @@ double	sawtooth( int count, double amplitude = 1.0 )
 	return	amplitude * count / period;
 }
 
-double	square( int count )
+double	square( int count, double amplitude = 1.0 )
 {
-	return	count < (period / 2) ? 0.00 : 1.00;
+	return	count < (period / 2) ? 0.00 : amplitude;
 }
 
 int main( void )
@@ -66,6 +66,7 @@ int main( void )
 	{
 		s[ i ].frequency( pwm_frequency );
 		s[ i ].resolution( pwm_resolution );
+		s[ i ].polarity( true );
 	}
 	s[ 0 ].start();
 
@@ -79,8 +80,8 @@ int main( void )
 			s[ 3 ]	= biased_sin( i, pi2, phase0 );
 			s[ 4 ]	= biased_sin( i, pi2, phase1 );
 			s[ 5 ]	= biased_sin( i, pi2, phase2 );
-			s[ 6 ]	= sawtooth( i );
-			s[ 7 ]	= square( i );
+			s[ 6 ]	= sawtooth( i, 0.222 );
+			s[ 7 ]	= square( i, 0.222 );
 			wait( delay );
 		}
 	}

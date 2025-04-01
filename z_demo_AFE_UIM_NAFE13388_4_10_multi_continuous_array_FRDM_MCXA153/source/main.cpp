@@ -73,7 +73,7 @@ int main( void )
 
 			for ( auto i = 0; i < n_lc; i++ )
 			{
-				printf( "  %8ld,", dp[ i ] );
+//				printf( "  %8ld,", dp[ i ] );
 				printf( "  %10.8lf,", dvp[ i ] );
 			}
 
