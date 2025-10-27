@@ -6,7 +6,7 @@
  * Generated linker script file for MCXN236
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/10/25 15:57:43
+ * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/10/27 11:48:29
  */
 
 INCLUDE "AFE_UIM_multichannel_input_FRDM_MCXN236_Debug_library.ld"

@@ -19,7 +19,6 @@ std::vector<raw_t>	dv( n_lc );
 
 void drdy_callback( void )
 {
-	afe.read( dv );
 	conversion_done	= true;
 }
 
@@ -66,6 +65,8 @@ int main( void )
 		if ( conversion_done )
 		{
 			conversion_done	= false;
+
+			afe.read( dv );
 
 			int i = 0;
 			for ( auto&& v: dv )
