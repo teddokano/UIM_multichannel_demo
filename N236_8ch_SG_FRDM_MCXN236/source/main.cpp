@@ -10,10 +10,10 @@
 
 constexpr auto	pwm_frequency	= 800.00;
 constexpr auto	pwm_resolution	= 100.00;
-constexpr auto	period			= (int)pwm_frequency * 20;
+constexpr auto	period			= (int)pwm_frequency * 2;
 constexpr auto	delay			= 1.00 / pwm_frequency;
 
-constexpr auto	frequency		= 10.00;
+constexpr auto	frequency		= 1.00;
 
 constexpr auto	pi2				= 2.00 * 3.1415926 * frequency;
 constexpr auto	pi4				= 2.00 * pi2;
